@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Aplikasi A"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><title>Aplikasi A</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:linear-gradient(135deg,#4f7cff,#8b5cf6);--tx:#161a2e;--mu:#6b7194;--ln:rgba(99,102,241,.16)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font:15px/1.4 'Plus Jakarta Sans',system-ui,sans-serif;color:var(--tx);background:radial-gradient(520px 320px at 100% 0,#e6ebff,transparent),radial-gradient(420px 320px at 0 25%,#f2e9ff,transparent),#fff;background-attachment:fixed}
+header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top) + 12px) 16px 10px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px)}
+h1{margin:0;font-size:22px;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+#rf,#hs{width:44px;height:44px;border:1px solid var(--ln);border-radius:14px;background:#fff;font-size:18px;color:var(--mu)}
+#hs{width:auto;padding:0 14px;font:inherit;font-weight:600;font-size:13px}header>div{display:flex;gap:8px}.dv{color:var(--mu);font-size:12px;margin-top:6px}
+main{padding:6px 16px 130px}
+.c,.sum>div,.em{background:rgba(255,255,255,.72);backdrop-filter:blur(12px);border:1px solid var(--ln);border-radius:18px;box-shadow:0 6px 24px rgba(79,100,255,.08)}
+.c{padding:14px;margin-bottom:12px;animation:up .3s both}
+.t{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.m{color:var(--mu);font-size:13px;margin:2px 0 10px}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+small{display:block;color:var(--mu);font-size:11px}
+.g b{font-size:16px}
+.bd{font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.bd.r{background:#ffe3e3;color:#c4262b}.bd.s{background:#dcf7ee;color:#0b7a5f}.bd.b{background:#fff1d6;color:#9a6200}.bd.p{background:#e3e9ff;color:#3f5bd6}
+.ctl{display:grid;gap:12px;margin-bottom:12px}
+select,input{width:100%;height:50px;border:1px solid var(--ln);border-radius:14px;padding:0 14px;font:inherit;background:#fff;color:var(--tx)}
+.sw{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mu);position:relative}
+.sw input{position:absolute;opacity:0;width:46px;height:28px}
+.sw i{width:46px;height:28px;border-radius:99px;background:#d9dcf0;position:relative;transition:.2s;flex:none}
+.sw i:after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s}
+.sw input:checked+i{background:var(--g)}.sw input:checked+i:after{left:21px}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.sum>div{padding:12px 14px}.sum b{font-size:20px}.sum u{font-size:12px;color:var(--mu);text-decoration:none}
+.hint{color:var(--mu);font-size:13px}
+.em{text-align:center;padding:36px 20px;color:var(--mu)}.em div{font-size:38px}.em b{color:var(--tx)}
+.sk{height:104px;border-radius:18px;margin-bottom:12px;background:linear-gradient(90deg,#f0f2fb 25%,#fff 50%,#f0f2fb 75%);background-size:200% 100%;animation:sh 1.2s infinite}
+nav{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr 84px 1fr 1fr;align-items:center;padding:8px 12px calc(env(safe-area-inset-bottom) + 8px);background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-top:1px solid var(--ln);z-index:6}
+nav [data-v],nav a{display:block;height:54px;border:0;background:none;font:inherit;font-size:11px;font-weight:600;color:var(--mu);text-align:center;text-decoration:none;padding:0}nav a:not(.rdy){opacity:.45;pointer-events:none}
+nav [data-v] span,nav a span{display:block;font-size:20px;line-height:1.3}
+nav [data-v].on{color:#5b5bf0}
+#fab{width:64px;height:64px;margin:-34px auto 0;border:0;border-radius:50%;background:var(--g);color:#fff;font-size:34px;line-height:1;box-shadow:0 10px 26px rgba(99,102,241,.45)}
+.ov{position:fixed;inset:0;background:rgba(22,26,46,.35);backdrop-filter:blur(3px);display:none;align-items:flex-end;z-index:10}.ov.on{display:flex}
+.ov .card{width:100%;max-height:92vh;overflow:auto;background:#fff;border-radius:26px 26px 0 0;padding:20px 16px calc(env(safe-area-inset-bottom) + 16px);animation:sl .28s}
+h3{margin:0 0 6px;font-size:19px}
+label{display:block;margin:14px 0 6px;font-size:13px;font-weight:600;color:var(--mu)}
+.seg{display:flex;gap:6px}
+.seg button{flex:1;height:46px;border:1px solid var(--ln);border-radius:12px;background:#fff;font:inherit;font-weight:600;color:var(--mu)}
+.seg .on{background:var(--g);color:#fff;border-color:transparent}
+.bt{width:100%;height:52px;margin-top:12px;border:0;border-radius:16px;background:var(--g);color:#fff;font:inherit;font-weight:700}
+.bt.red{background:#e5484d}.bt.ghost{background:#eef0fa;color:var(--tx)}.bt:disabled{opacity:.7}
+.sp{display:inline-block;width:16px;height:16px;margin-right:8px;vertical-align:-3px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:r .7s linear infinite}
+#toast{position:fixed;left:16px;right:16px;top:calc(env(safe-area-inset-top) + 12px);z-index:20;padding:14px 16px;border-radius:16px;color:#fff;font-weight:600;transform:translateY(-160%);transition:.3s}
+#toast.show{transform:none}#toast.ok{background:#0e9f7e}#toast.err{background:#e5484d}#toast.warn{background:#d98a00}
+@keyframes up{from{opacity:0;transform:translateY(8px)}}@keyframes sl{from{transform:translateY(100%)}}@keyframes sh{to{background-position:-200% 0}}@keyframes r{to{transform:rotate(360deg)}}
+.c.rj{border-left:4px solid #e5484d;background:rgba(255,246,246,.88)}
+.fb{display:flex;justify-content:space-between;align-items:center;width:100%;height:46px;border:1px solid var(--ln);border-radius:14px;background:#fff;font:inherit;font-weight:600;color:var(--tx);padding:0 14px}
+.fb i{font-style:normal;background:var(--g);color:#fff;border-radius:99px;font-size:11px;padding:2px 8px;margin-left:8px}
+.fp{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.fp label{margin:0 0 4px}.fp .full{grid-column:1/-1}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{height:38px;padding:0 12px;border:1px solid var(--ln);border-radius:99px;background:#fff;font:inherit;font-size:13px;font-weight:600;color:var(--mu)}
+.chips .on{background:var(--g);color:#fff;border-color:transparent}
+.rs{display:grid;grid-template-columns:1fr auto auto;gap:6px 14px;font-size:14px;align-items:baseline}
+.rs span,.rs b,.rs small.r{text-align:right}.rs div{word-break:break-word}
+.sr{display:flex;gap:8px}.sr input{flex:1;min-width:0}
+.go{flex:none;width:52px;height:50px;border:0;border-radius:14px;background:var(--g);color:#fff;font-size:20px;box-shadow:0 6px 16px rgba(99,102,241,.3)}
+#lst{scroll-margin-top:84px}
+.pgr{margin:6px 0 10px}
+.pgb{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pgb button{height:50px;border:1px solid var(--ln);border-radius:14px;background:#fff;font:inherit;font-weight:700;color:var(--tx)}
+.pgb button:first-child{text-align:left;padding-left:14px}.pgb button:last-child{text-align:right;padding-right:14px}
+.pgb button:disabled{opacity:.4}
+.pgn{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px}
+.pgn button{min-width:42px;height:42px;border:1px solid var(--ln);border-radius:12px;background:#fff;font:inherit;font-weight:600;color:var(--mu)}
+.pgn .on{background:var(--g);color:#fff;border-color:transparent}.dt{align-self:center;color:var(--mu)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header><h1 id="ttl">Dashboard</h1><div><button id="hs" onclick="S.view='hist';render()">Histori</button><button id="rf" onclick="load(1)" aria-label="Muat ulang">&#8635;</button></div></header>
+<main id="main"></main>
+<nav>
+  <button data-v="dash"><span>&#9638;</span>Dashboard</button>
+  <button data-v="qc"><span>&#9719;</span>Status QC</button>
+  <button id="fab" onclick="openAdd()" aria-label="Tambah transaksi">+</button>
+  <button data-v="prod"><span>&#9998;</span>Produksi</button>
+  <a id="sl" target="_blank" rel="noopener"><span>&#8599;</span>Spreadsheet</a>
+</nav>
+<div class="ov" id="ov" onclick="if(event.target===this)dlg()"><div class="card"></div></div>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const fmt=n=>new Intl.NumberFormat('id-ID').format(n||0);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dmy=s=>s.split('-').reverse().join('/');
+const CFG=()=>{try{return JSON.parse(localStorage.getItem('cfgA')||'{}')}catch(e){return{}}};
+const run=async(fn,...a)=>{ // memanggil API Apps Script (butuh internet, URL, dan token)
+  const c=CFG();if(!c.url||!c.tok)throw new Error('Belum tersambung ke Google Sheets');
+  let r;try{r=await fetch(c.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({token:c.tok,fn,args:a})})}
+  catch(e){throw new Error('Tidak ada koneksi internet atau URL salah')}
+  let j;try{j=await r.json()}catch(e){throw new Error('Respons tidak valid. Pastikan deployment diatur akses Siapa saja')}
+  if(!j.ok)throw new Error(j.error);return j.data;
+};
+const S={rows:[],produk:[],view:'dash',prod:'',done:false,lim:30,qcf:'on process',qp:'',hist:[],hl:50,days:30,from:'',pg:{dash:1,qc:1,prod:1},f:{q:'',from:'',to:''},d:{q:'',from:'',to:''},st:'pass',fo:false};
+let QB=false;
+let F={};
+
+function toast(m,t){const e=$('#toast');e.textContent=m;e.className='show '+t;clearTimeout(toast.t);toast.t=setTimeout(()=>e.className='',3500)}
+const msg=e=>String((e&&e.message)||e).replace(/^Error:\s*/,'');
+const empty=(i,t,s)=>`<div class="em"><div>${i}</div><b>${t}</b><p>${s}</p></div>`;
+
+async function load(f){
+  $('#main').innerHTML='<div class="sk"></div>'.repeat(4);
+  try{const d=await run('getData',!!f,S.days);S.rows=d.rows;S.produk=d.produk;S.from=d.from||'';if(d.url){const a=$('#sl');a.href=d.url;a.classList.add('rdy')}render()}
+  catch(e){$('#main').innerHTML=empty('&#9888;&#65039;','Gagal memuat data',esc(msg(e))+'<br>Ketuk muat ulang di kanan atas, atau ubah sambungan.')+'<button class="bt ghost" onclick="setup()">Ubah sambungan</button>'}
+}
+function badge(r){
+  if(QB==='d')return r.qc==='on process'?'<span class="bd p">Menunggu QC</span>':r.qc==='reject'?'<span class="bd r">Reject</span>':'<span class="bd s">QC pass</span>';
+  if(QB)return r.qc==='on process'?'<span class="bd p">On process</span>':r.qc==='reject'?'<span class="bd r">Reject</span>':'<span class="bd s">Pass</span>';
+  if(r.qc==='on process')return '<span class="bd p">On process</span>';
+  return r.status==='selesai'?'<span class="bd s">Selesai</span>':'<span class="bd b">Belum selesai</span>';
+}
+function card(r){
+  return `<div class="c${r.qc==='reject'?' rj':''}" onclick="act(${r.row})"><div class="t"><b>${esc(r.produk)}</b>${badge(r)}</div>
+  <div class="m">${dmy(r.tanggal)} &middot; Shift ${r.sl[0]} &middot; Line ${r.sl[2]}</div>
+  <div class="g"><div><small>Qtt (Kg)</small><b>${fmt(r.qtt)}</b></div><div><small>Rebagging</small><b>${fmt(r.reb)}</b></div><div><small>Sisa</small><b>${fmt(r.sisa)}</b></div></div></div>`;
+}
+const byDate=(a,b)=>b.tanggal.localeCompare(a.tanggal)||a.sl.localeCompare(b.sl);
+
+function render(){
+  document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v===S.view));
+  $('#ttl').textContent={dash:'Dashboard',qc:'Status QC',prod:'Produksi',hist:'Histori'}[S.view];
+  const m=$('#main');QB=S.view==='qc'?true:S.view==='dash'?'d':false;
+  if(S.view==='hist'){histLoad();return}
+  if(S.view==='prod'){
+    const l=S.rows.filter(r=>r.qc!=='reject').sort((a,b)=>b.row-a.row),P=pg(l,'prod');
+    m.innerHTML=l.length?`<p class="hint">Ketuk kartu untuk mengedit atau menghapus data yang salah input. ${l.length} data (yang terbaru dimasukkan di atas).</p><div id="lst"></div>`+P.v.map(card).join('')+P.bar
+      :empty('&#128221;','Belum ada data produksi','Ketuk + untuk menambah produksi.');
+    return;
+  }
+  if(S.view==='qc'){
+    const names=[...new Set(S.rows.map(r=>r.produk))].sort();
+    if(S.qp&&!names.includes(S.qp))S.qp='';
+    const base=S.rows.filter(r=>!S.qp||r.produk===S.qp),n={},O=[['on process','On process'],['pass','Pass'],['reject','Reject']];
+    O.forEach(([k])=>n[k]=base.filter(r=>r.qc===k).length);
+    const l=base.filter(r=>r.qc===S.qcf).sort((a,b)=>b.row-a.row),P=pg(l,'qc'),tq=l.reduce((s,r)=>s+r.qtt,0);
+    const tip={'on process':'Ketuk kartu untuk mengisi hasil QC.',pass:'Ketuk kartu untuk mengecek atau mengubah status QC yang salah input.',reject:'Ketuk kartu untuk mengecek atau mengubah status QC yang salah input.'}[S.qcf];
+    m.innerHTML=`<div class="seg" style="margin-bottom:12px">${O.map(([k,t])=>`<button class="${S.qcf===k?'on':''}" onclick="S.qcf='${k}';S.pg.qc=1;render()">${t} (${n[k]})</button>`).join('')}</div>
+    <select style="margin-bottom:12px" onchange="S.qp=this.value;S.pg.qc=1;render()"><option value="">Semua produk</option>${names.map(p=>`<option value="${esc(p)}" ${p===S.qp?'selected':''}>${esc(p)}</option>`).join('')}</select>
+    <div class="sum"><div><small>Total Qtt${S.qp?' &middot; '+esc(S.qp):''}</small><b>${fmt(tq)} <u>Kg</u></b></div><div><small>Jumlah data</small><b>${l.length}</b></div></div>`
+      +(l.length?`<p class="hint">${tip}</p><div id="lst"></div>`+P.v.map(card).join('')+P.bar
+      :empty('&#9989;','Tidak ada data','Belum ada data QC dengan status dan produk ini.'));
+    return;
+  }
+  const f=S.f,nA=f.from||f.to?1:0,SL=[['pass','QC pass'],['wait','Menunggu QC'],['all','Semua status']];
+  m.innerHTML=`<div class="ctl">
+    <select onchange="S.prod=this.value;S.pg.dash=1;fillRes()"><option value="">Semua produk</option>${S.produk.map(n=>`<option value="${esc(n)}" ${n===S.prod?'selected':''}>${esc(n)}</option>`).join('')}</select>
+    <div class="chips">${SL.map(([k,t])=>`<button class="${S.st===k?'on':''}" onclick="S.st='${k}';S.pg.dash=1;render()">${t}</button>`).join('')}</div>
+    <button class="fb" onclick="S.fo=!S.fo;render()"><span>Filter tanggal${nA?'<i>1</i>':''}</span><span>${S.fo?'&#9650;':'&#9660;'}</span></button>
+    ${S.fo?`<div class="c fp" style="animation:none">
+      <div><label>Tanggal produksi: dari</label><input type="date" min="2020-01-01" max="2099-12-31" value="${S.d.from}" oninput="S.d.from=this.value"></div>
+      <div><label>Sampai (kosong = 1 hari)</label><input type="date" min="2020-01-01" max="2099-12-31" value="${S.d.to}" oninput="S.d.to=this.value"></div>
+      <div class="full chips"><button onclick="qd('t')">Hari ini</button><button onclick="qd('y')">Kemarin</button><button onclick="qd('w')">7 hari terakhir</button><button onclick="qd('')">Hapus tanggal</button></div>
+      <div class="full"><label>Data yang dimuat</label><div class="chips">${[[30,'30 hari'],[60,'60 hari'],[90,'90 hari'],[180,'180 hari'],[0,'Semua']].map(([d,t])=>`<button class="${S.days===d?'on':''}" onclick="setDays(${d})">${t}</button>`).join('')}</div></div>
+    </div>`:''}
+    <button class="bt" style="margin:0" onclick="doSearch()">&#128269; Cari</button>
+    ${S.st==='pass'?`<label class="sw" style="margin:0"><input type="checkbox" ${S.done?'checked':''} onchange="S.done=this.checked;S.pg.dash=1;fillRes()"><i></i>Tampilkan yang sudah selesai</label>`:''}
+    ${S.prod||nA||S.done||S.st!=='pass'?'<button class="bt ghost" style="height:44px;margin:0" onclick="rst()">Hapus semua filter</button>':''}
+  </div><div id="res"></div>`;
+  fillRes();
+}
+
+// ---- Halaman: 10 data per halaman, tombol Sebelumnya/Berikutnya + nomor halaman ----
+const PS=10;
+function pg(l,k){
+  const t=Math.max(1,Math.ceil(l.length/PS)),p=Math.min(Math.max(1,S.pg[k]||1),t);S.pg[k]=p;
+  const v=l.slice((p-1)*PS,p*PS);
+  if(l.length<=PS)return{v,bar:''};
+  let h='',pv=0;
+  for(let i=1;i<=t;i++)if(i===1||i===t||Math.abs(i-p)<=1||(p<=3&&i<=4)||(p>=t-2&&i>=t-3)){
+    if(i-pv>1)h+='<span class="dt">&hellip;</span>';
+    h+=`<button class="${i===p?'on':''}" onclick="goPg('${k}',${i})">${i}</button>`;pv=i;
+  }
+  return{v,bar:`<div class="pgr"><div class="pgb"><button ${p<=1?'disabled':''} onclick="goPg('${k}',${p-1})">&larr; Sebelumnya</button><button ${p>=t?'disabled':''} onclick="goPg('${k}',${p+1})">Berikutnya &rarr;</button></div><div class="pgn">${h}</div><p class="hint" style="text-align:center;margin:8px 0 0">Halaman ${p} dari ${t} &middot; data ${(p-1)*PS+1}&ndash;${Math.min(p*PS,l.length)} dari ${l.length}</p></div>`};
+}
+function goPg(k,p){S.pg[k]=p;k==='dash'?fillRes():render();const e=$('#lst');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// ---- Pencarian dashboard (hanya membaca data yang sudah dimuat di HP) ----
+// rapikan teks: huruf kecil, spasi ganda jadi satu, spasi di dekat angka/simbol dihapus, kode (dalam kurung) diabaikan
+const sn=s=>String(s).toLowerCase().replace(/\([^)]*\)/g,' ').replace(/\s+/g,' ').trim().replace(/([^a-z]) /g,'$1').replace(/ ([^a-z])/g,'$1');
+function rng(){ // tanggal "sampai" kosong = hanya tanggal "dari" (1 hari)
+  const f=S.f;let lo=f.from||f.to,hi=f.to||lo;
+  if(lo&&hi&&lo>hi)[lo,hi]=[hi,lo];return[lo,hi]}
+function dbRows(){
+  const f=S.f,q=sn(f.q),[lo,hi]=rng(),st=S.st;
+  return S.rows.filter(r=>{
+    if(S.prod&&r.produk!==S.prod)return false;
+    if(q&&!sn(r.produk).includes(q))return false;
+    if(lo)return r.tanggal>=lo&&r.tanggal<=hi&&(st==='all'||(st==='wait'?r.qc==='on process':r.qc==='pass'));
+    if(st==='wait')return r.qc==='on process';
+    if(st==='all')return true;
+    return r.qc==='pass'&&(S.done||r.sisa>0);
+  }).sort((a,b)=>a.tanggal.localeCompare(b.tanggal)||a.sl.localeCompare(b.sl));
+}
+function fillRes(){
+  const el=$('#res');if(!el)return;
+  const l=dbRows(),[lo,hi]=rng(),w=S.st==='wait',g={};let tq=0,ts=0,wp=0,wq=0,rj=0,rq=0;
+  l.forEach(r=>{
+    if(w?r.qc==='on process':r.qc==='pass'){const x=g[r.produk]=g[r.produk]||{q:0,s:0},v=w?1:r.sisa;x.q+=r.qtt;x.s+=v;tq+=r.qtt;ts+=v}
+    else if(r.qc==='on process'){wp++;wq+=r.qtt}else if(r.qc==='reject'){rj++;rq+=r.qtt}
+  });
+  const ks=Object.keys(g).sort();
+  const sum=l.length?`<div class="c" style="animation:none"><b>Ringkasan per produk (${w?'Menunggu QC':'QC pass'})</b>
+    <div class="rs" style="margin-top:8px;max-height:230px;overflow:auto"><small>Produk</small><small class="r">Qtt (Kg)</small><small class="r">${w?'Batch':'Sisa (Kg)'}</small>${ks.map(k=>`<div>${esc(k)}</div><span>${fmt(g[k].q)}</span><span>${fmt(g[k].s)}</span>`).join('')}</div>
+    <div class="rs" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--ln)"><div><b>Total</b></div><b>${fmt(tq)}</b><b>${fmt(ts)}</b></div>
+    ${S.st==='all'?`<p class="hint" style="margin:8px 0 0">Menunggu QC: ${wp} batch (${fmt(wq)} Kg) &middot; Reject: ${rj} batch (${fmt(rq)} Kg). Keduanya tidak dihitung di total.</p>`:''}</div>`:'';
+  const lab={pass:S.done||lo?'QC pass':'QC pass dengan sisa',wait:'Menunggu QC',all:'semua status'}[S.st];
+  const P=pg(l,'dash');
+  el.innerHTML=sum+`<p class="hint">${l.length} batch &middot; ${lab}${lo?` &middot; tanggal ${lo===hi?dmy(lo):dmy(lo)+' s/d '+dmy(hi)}`:''} &middot; tanggal terlama di atas. Dimuat: ${S.days?S.days+' hari terakhir':'semua data'} + batch yang belum selesai.</p>`
+    +'<div id="lst"></div>'+(l.length?P.v.map(card).join('')+P.bar:empty('&#128230;','Tidak ada data','Coba ubah filter. Untuk tanggal yang lebih lama, pilih rentang data yang dimuat.'));
+}
+function dateChg(re){
+  const lo=rng()[0];
+  if(lo&&S.days&&S.from&&lo<S.from){ // tanggal di luar data yang dimuat: muat rentang yang lebih panjang
+    const ago=Math.ceil((Date.parse(new Date().toLocaleDateString('sv-SE'))-Date.parse(lo))/864e5);
+    S.days=[30,60,90,180].find(x=>x>=ago)||0;toast('Memuat data yang lebih lama...','ok');load();return;
+  }
+  re?render():fillRes();
+}
+function doSearch(){ // pencarian hanya berjalan saat tombol ditekan
+  const d=S.d,ok=x=>!x||(/^\d{4}-\d{2}-\d{2}$/.test(x)&&+x.slice(0,4)>=2020);
+  if(!ok(d.from)||!ok(d.to))return toast('Tanggal belum lengkap. Isi tahun 4 digit, misalnya 2026','err');
+  S.f={q:d.q,from:d.from,to:d.to};S.pg.dash=1;dateChg(1);
+}
+function qd(k){
+  const iso=d=>d.toLocaleDateString('sv-SE'),t=new Date(),b=new Date(t);let a='',z='';
+  if(k==='t'){a=z=iso(t)}
+  else if(k==='y'){b.setDate(b.getDate()-1);a=z=iso(b)}
+  else if(k==='w'){b.setDate(b.getDate()-6);a=iso(b);z=iso(t)}
+  S.d.from=S.f.from=a;S.d.to=S.f.to=z;S.pg.dash=1;
+  dateChg(1);
+}
+function setDays(d){S.days=d;load()}
+function rst(){S.f={q:'',from:'',to:''};S.d={q:'',from:'',to:''};S.prod='';S.done=false;S.st='pass';S.pg.dash=1;render()}
+
+function dlg(h){const o=$('#ov');if(h){$('#ov .card').innerHTML=h;o.classList.add('on')}else o.classList.remove('on')}
+const info=r=>`${dmy(r.tanggal)} &middot; Shift ${r.sl[0]} &middot; Line ${r.sl[2]} &middot; ${fmt(r.qtt)} Kg`;
+
+function act(row){
+  const r=S.rows.find(x=>x.row===row);F=r;
+  const fl=r.qc==='reject'||(r.qc==='pass'&&!r.reb),pr=r.qc==='on process'||fl;
+  dlg(`<h3>${esc(r.produk)}</h3><p class="m">${info(r)}</p>
+  ${r.qc==='on process'?'<button class="bt" onclick="qcFrom()">Isi hasil QC</button>':''}
+  ${fl?`<button class="bt" onclick="flip()">Ubah status QC ke ${r.qc==='pass'?'Reject':'Pass'}</button>`:''}
+  <button class="bt ${pr?'ghost':''}" onclick="editF()">Edit data</button>
+  <button class="bt red" onclick="delAsk()">Hapus</button><button class="bt ghost" onclick="dlg()">Tutup</button>`);
+}
+async function flip(){
+  const r=F,q=r.qc==='pass'?'reject':'pass';
+  try{const m=await run('updateRow',{row:r.row,sig:r.sig,tanggal:r.tanggal,sl:r.sl,produk:r.produk,qtt:r.qtt,reb:r.reb,qc:q,dev:devLabel()});toast('Status QC diubah menjadi '+q,'ok');dlg();load()}
+  catch(e){toast(msg(e),'err')}
+}
+function delAsk(){const r=F;dlg(`<h3>Hapus data ini?</h3><p class="m"><b>${esc(r.produk)}</b><br>${info(r)}</p>
+  <p class="hint">Baris akan dihapus dari spreadsheet dan tidak bisa dikembalikan.</p>
+  <button class="bt red" onclick="delGo()">Ya, hapus</button><button class="bt ghost" onclick="dlg()">Batal</button>`)}
+async function delGo(){
+  try{const m=await run('deleteRow',{row:F.row,sig:F.sig,dev:devLabel()});toast(m,'ok');dlg();load()}
+  catch(e){toast(msg(e),'err')}
+}
+
+function openAdd(pre){
+  F={mode:'add',jenis:'Produksi',tanggal:new Date().toLocaleDateString('sv-SE'),shift:'1',line:'1',produk:'',qtt:0,qc:'pass',batch:0,pnew:0,...pre};showForm();
+}
+function qcFrom(){const r=F;openAdd({jenis:'QC',batch:r.row})}
+function editF(){const r=F;F={mode:'edit',row:r.row,sig:r.sig,tanggal:r.tanggal,shift:r.sl[0],line:r.sl[2],produk:r.produk,qtt:r.qtt,reb:r.reb,qc:r.qc};showForm()}
+const sg=(k,o)=>`<div class="seg">${o.map(([v,l])=>`<button type="button" class="${String(F[k])===v?'on':''}" onclick="F.${k}='${v}';showForm()">${l}</button>`).join('')}</div>`;
+function mask(el,k){const d=el.value.replace(/\D/g,'');F[k]=+d||0;el.value=d?fmt(+d):''}
+
+const blabel=(r,j)=>`${dmy(r.tanggal).slice(0,5)} · ${r.sl} · ${r.produk} · ${fmt(r.qtt)} Kg`+(j==='Rebagging'?` · sisa ${fmt(r.sisa)}`:'');
+const pnorm=s=>String(s).trim().replace(/\s+/g,' ').replace(/\s*([\/,])\s*/g,'$1');
+const pkey=s=>pnorm(s).toLowerCase().replace(/\s/g,'');
+function lev(a,b){const d=[];for(let i=0;i<=a.length;i++)d[i]=[i];for(let j=1;j<=b.length;j++)d[0][j]=j;
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
+function similar(n){const k=pkey(n);let best=null,bd=9;
+  for(const p of S.produk){const q=pkey(p);if(q===k)return{exact:p};const d=lev(k,q);if(d<=(k.length<=8?1:2)&&d<bd){bd=d;best=p}}
+  return best?{near:best}:null}
+function pSel(v){if(v==='__new'){F.pnew=1;F.produk=''}else{F.pnew=0;F.produk=v}showForm()}
+function pickB(v){F.batch=+v||0;F.qtt=0;showForm()}
+function setJ(j){F.jenis=j;F.batch=0;F.qtt=0;F.qc='pass';showForm()}
+function pf(){
+  const nw=!!F.pnew||(!!F.produk&&!S.produk.includes(F.produk));F.pnew=nw?1:0;
+  return `<label>Produk</label><select onchange="pSel(this.value)"><option value="">Pilih produk...</option>${S.produk.map(p=>`<option value="${esc(p)}" ${!nw&&p===F.produk?'selected':''}>${esc(p)}</option>`).join('')}<option value="__new" ${nw?'selected':''}>+ Produk baru...</option></select>`
+  +(nw?`<input style="margin-top:8px" value="${esc(F.produk)}" placeholder="Ketik nama produk baru, contoh 6/10/20 NSS" oninput="F.produk=this.value">`:'');
+}
+function showForm(){
+  const ed=F.mode==='edit',j=F.jenis,bt=!ed&&(j==='QC'||j==='Rebagging');
+  let body='';
+  if(bt){
+    const L=(j==='QC'?S.rows.filter(r=>r.qc==='on process'):S.rows.filter(r=>r.qc==='pass'&&r.sisa>0)).sort(byDate),b=S.rows.find(r=>r.row===F.batch);
+    body=`<label>Pilih batch</label>`+(L.length?`<select onchange="pickB(this.value)"><option value="">Pilih batch...</option>${L.map(r=>`<option value="${r.row}" ${r.row===F.batch?'selected':''}>${esc(blabel(r,j))}</option>`).join('')}</select>`
+      :`<p class="hint">${j==='QC'?'Tidak ada produksi yang menunggu QC.':'Tidak ada batch QC pass yang masih punya sisa.'}</p>`);
+    if(b){
+      body+=`<div class="c" style="animation:none;margin:12px 0 0"><b>${esc(b.produk)}</b><div class="m" style="margin-bottom:0">${info(b)}${j==='Rebagging'?` &middot; Sisa ${fmt(b.sisa)} Kg`:''}</div></div>`;
+      if(j==='Rebagging')body+=`<label>Qtt Rebagging (Kg)</label><input inputmode="numeric" value="${F.qtt?fmt(F.qtt):''}" placeholder="0" oninput="mask(this,'qtt')"><button class="bt ghost" style="height:44px" onclick="F.qtt=${b.sisa};showForm()">Isi seluruh sisa (${fmt(b.sisa)} Kg)</button><p class="hint">Status selesai atau belum dihitung otomatis dari sisa.</p>`;
+      else body+=`<label>Status QC</label>${sg('qc',[['pass','Pass'],['reject','Reject']])}`;
+    }
+  }else{
+    body=`<label>Tanggal</label><input type="date" value="${F.tanggal}" oninput="F.tanggal=this.value">
+  <label>Shift</label>${sg('shift',[['1','Shift 1'],['2','Shift 2']])}
+  <label>Line</label>${sg('line',['1','2','3','4','5'].map(n=>[n,n]))}
+  ${pf()}
+  <label>Qtt (Kg)</label><input inputmode="numeric" value="${F.qtt?fmt(F.qtt):''}" placeholder="0" oninput="mask(this,'qtt')">
+  ${ed?`<label>Rebagging (Kg)</label><input inputmode="numeric" value="${F.reb?fmt(F.reb):''}" placeholder="0" oninput="mask(this,'reb')"><label>Status QC</label>${sg('qc',[['on process','On process'],['pass','Pass'],['reject','Reject']])}`:''}`;
+  }
+  dlg(`<h3>${ed?'Edit data':'Tambah transaksi'}</h3>
+  ${ed?'':`<label>Jenis transaksi</label><div class="seg">${[['Produksi','Produksi'],['QC','QC'],['Rebagging','Rebagging']].map(([v,l])=>`<button type="button" class="${j===v?'on':''}" onclick="setJ('${v}')">${l}</button>`).join('')}</div>`}
+  ${body}
+  <button class="bt" id="sv" onclick="save()">Simpan</button><button class="bt ghost" onclick="dlg()">Batal</button>`);
+}
+function askProd(m){F.sim=m;dlg(`<h3>Maksud Anda ${esc(m)}?</h3><p class="hint">Nama "${esc(pnorm(F.produk))}" mirip dengan produk yang sudah ada.</p>
+  <button class="bt" onclick="useProd(1)">Ya, pakai ${esc(m)}</button><button class="bt ghost" onclick="useProd(0)">Tidak, ini produk baru</button><button class="bt ghost" onclick="showForm()">Kembali mengedit</button>`)}
+function useProd(y){if(y){F.produk=F.sim;F.pnew=0}else F.produk=pnorm(F.produk).toUpperCase();showForm();save(1)}
+async function save(skip){
+  const ed=F.mode==='edit',j=F.jenis,bt=!ed&&(j==='QC'||j==='Rebagging');
+  let p,er='';
+  if(bt){
+    const r=S.rows.find(x=>x.row===F.batch);
+    if(!r)er='Pilih batch terlebih dahulu';
+    else if(j==='Rebagging'&&!(+F.qtt>0))er='Qtt rebagging wajib diisi dan lebih dari 0';
+    else if(j==='Rebagging'&&+F.qtt>r.sisa)er='Qtt rebagging melebihi sisa ('+fmt(r.sisa)+' Kg)';
+    p={jenis:j,row:F.batch,sig:r&&r.sig,qtt:+F.qtt,qc:F.qc,dev:devLabel()};
+  }else{
+    p={...F,sl:F.shift+'/'+F.line,produk:pnorm(F.produk||''),dev:devLabel()};
+    if(!p.tanggal)er='Tanggal wajib diisi';else if(!p.produk)er='Produk wajib diisi';else if(!(+F.qtt>0))er='Qtt wajib diisi dan tidak boleh negatif atau nol';
+    if(!er&&F.pnew&&!skip){
+      const s=similar(p.produk);
+      if(s&&s.near){F.produk=p.produk;return askProd(s.near)}
+      p.produk=s&&s.exact?s.exact:p.produk.toUpperCase();
+    }
+  }
+  if(er)return toast(er,'err');
+  const b=$('#sv');b.disabled=true;b.innerHTML='<span class="sp"></span>Menyimpan...';
+  try{const m=await run(ed?'updateRow':'saveTransaction',p);toast(m,'ok');dlg();await load()}
+  catch(e){toast(msg(e),/^Data telah dimasukkan/.test(msg(e))?'warn':'err');b.disabled=false;b.textContent='Simpan'}
+}
+function detectDev(){
+  const u=navigator.userAgent;let os='Perangkat';
+  if(/Android/i.test(u)){os='Android';const m=u.match(/;\s*([^;)]+)\sBuild/);if(m)os='Android '+m[1].trim()}
+  else if(/iPhone/.test(u))os='iPhone';else if(/iPad/.test(u))os='iPad';else if(/Windows/.test(u))os='Windows';else if(/Mac/.test(u))os='Mac';else if(/Linux/.test(u))os='Linux';
+  const br=/Edg\//.test(u)?'Edge':/OPR\//.test(u)?'Opera':/Chrome\//.test(u)?'Chrome':/Safari\//.test(u)?'Safari':/Firefox\//.test(u)?'Firefox':'';
+  return os+(br?' · '+br:'');
+}
+const devName=()=>{try{return localStorage.getItem('devname')||''}catch(e){return ''}};
+const devLabel=()=>{const n=devName(),a=detectDev();return n?n+' ('+a+')':a};
+function editDev(){dlg(`<h3>Nama perangkat</h3><p class="hint">Beri nama agar mudah dikenali di histori, misalnya "HP Produksi" atau "HP Gudang".</p><input id="dn" maxlength="30" value="${esc(devName())}" placeholder="Contoh: HP Gudang"><button class="bt" onclick="saveDev()">Simpan</button><button class="bt ghost" onclick="dlg()">Batal</button>`)}
+function saveDev(){const v=$('#dn').value.trim();try{localStorage.setItem('devname',v)}catch(e){toast('Nama tidak bisa disimpan di browser ini','err');return}dlg();showHist()}
+const hc=a=>/^Hapus/.test(a)?'r':/^Tambah/.test(a)?'s':/^Edit/.test(a)?'b':'p';
+async function histLoad(){
+  $('#main').innerHTML='<div class="sk"></div>'.repeat(4);
+  try{S.hist=await run('getHistory');showHist()}
+  catch(e){if(S.view==='hist')$('#main').innerHTML=empty('&#9888;&#65039;','Gagal memuat histori',esc(msg(e)))}
+}
+function showHist(){
+  if(S.view!=='hist')return;
+  const l=S.hist,v=l.slice(0,S.hl);
+  $('#main').innerHTML=`<div class="c" style="animation:none"><small>Perangkat ini</small><b>${esc(devLabel())}</b><button class="bt ghost" style="height:44px;margin-top:8px" onclick="editDev()">Ubah nama perangkat</button><button class="bt ghost" style="height:44px;margin-top:8px" onclick="setup()">Ubah sambungan ke Google Sheets</button></div>`
+  +(l.length?`<p class="hint">${v.length} dari ${l.length} catatan terbaru (yang terbaru di atas).</p>`+v.map(x=>`<div class="c"><div class="t"><span class="bd ${hc(x.aksi)}">${esc(x.aksi)}</span><small>${esc(x.t)}</small></div><div style="margin-top:8px"><b>${esc(x.data)}</b></div>${x.detail?`<div class="m" style="margin:2px 0 0">${esc(x.detail)}</div>`:''}<div class="dv">&#128241; ${esc(x.dev)}</div></div>`).join('')+(l.length>v.length?'<button class="bt ghost" onclick="S.hl+=50;showHist()">Tampilkan lebih banyak</button>':'')
+  :empty('&#128337;','Belum ada histori','Catatan muncul setelah kamu menambah, mengedit, atau menghapus data.'));
+}
+document.querySelectorAll('nav [data-v]').forEach(b=>b.onclick=()=>{S.view=b.dataset.v;render()});
+function setup(t){
+  const c=CFG();
+  dlg(`<h3>Sambungkan ke Google Sheets</h3><p class="hint">${t||'Isi sekali saja. Disimpan di perangkat ini.'}</p>
+  <label>URL aplikasi web (berakhiran /exec)</label><input id="cu" value="${esc(c.url||'')}" placeholder="https://script.google.com/macros/s/.../exec" autocapitalize="off" autocomplete="off">
+  <label>Token</label><input id="ct" type="password" value="${esc(c.tok||'')}" placeholder="Token dari fungsi buatToken" autocapitalize="off" autocomplete="off">
+  <button class="bt" onclick="saveCfg()">Simpan dan sambungkan</button>${c.tok?'<button class="bt ghost" onclick="dlg()">Batal</button>':''}`);
+}
+function saveCfg(){
+  const u=$('#cu').value.trim(),t=$('#ct').value.trim();
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(u))return toast('URL harus berakhiran /exec','err');
+  if(t.length<16)return toast('Token belum lengkap','err');
+  try{localStorage.setItem('cfgA',JSON.stringify({url:u,tok:t}))}catch(e){return toast('Browser tidak bisa menyimpan pengaturan','err')}
+  dlg();load();
+}
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+if(CFG().tok)load();else{$('#main').innerHTML=empty('&#128279;','Belum tersambung','Hubungkan aplikasi ke Google Sheets-mu.');setup('Isi URL aplikasi web dan token dari Apps Script.')}
+</script></body></html>
