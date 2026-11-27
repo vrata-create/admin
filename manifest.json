@@ -1,6 +1,6 @@
 {
-  "name": "Aplikasi A - Produksi, QC dan Rebagging",
-  "short_name": "Aplikasi A",
+  "name": "Data Rebagging",
+  "short_name": "Data Rebagging",
   "description": "Pencatatan produksi, QC, dan rebagging yang terhubung ke Google Sheets",
   "start_url": "./",
   "scope": "./",
